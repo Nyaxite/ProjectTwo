@@ -1,0 +1,326 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wood_tile_light"
+    android:orientation="vertical"
+    tools:context=".MentalMath" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/timerTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:textColor="@color/white"
+                android:text="@string/zero_seconds"
+                android:textSize="@dimen/font_30" />
+
+            <TextView
+                android:id="@+id/scoreTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:textColor="@color/white"
+                android:text="@string/score_zero"
+                android:textSize="@dimen/font_30" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_style_1" >
+
+            <TextView
+                android:id="@+id/infoTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:shadowColor="@color/white"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:textColor="@color/black"
+                android:text="@string/nothing"
+                android:textSize="@dimen/font_20" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="top"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/numberOneTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:shadowColor="@color/black"
+                android:text="@string/number_one"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_40" />
+
+            <TextView
+                android:id="@+id/operatorTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:textColor="@color/white"
+                android:text="@string/operator_addition"
+                android:textSize="@dimen/font_40" />
+
+            <TextView
+                android:id="@+id/numberTwoTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:textColor="@color/white"
+                android:text="@string/number_two"
+                android:textSize="@dimen/font_40" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow9"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <EditText
+                android:id="@+id/answerEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:ems="10"
+                android:focusable="false"
+                android:gravity="center"
+                android:maxLength="@integer/five"
+                android:text="@string/number_one"
+                android:textSize="@dimen/font_20" >
+
+                <requestFocus />
+            </EditText>
+
+            <CheckBox
+                android:id="@+id/makeNegativeCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:textColor="@color/white"
+                android:text="@string/make_negative"
+                android:textSize="@dimen/font_15" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow10"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/answerButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_marginLeft="@dimen/dimen_50dp"
+                android:layout_marginRight="@dimen/dimen_50dp"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/calculate"
+                android:textSize="@dimen/font_25" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/oneButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_one"
+                android:textSize="@dimen/font_30" />
+
+            <Button
+                android:id="@+id/twoButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_two"
+                android:textSize="@dimen/font_30" />
+
+            <Button
+                android:id="@+id/threeButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_three"
+                android:textSize="@dimen/font_30" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/fourButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_four"
+                android:textSize="@dimen/font_30" />
+
+            <Button
+                android:id="@+id/fiveButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_five"
+                android:textSize="@dimen/font_30" />
+
+            <Button
+                android:id="@+id/sixButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_six"
+                android:textSize="@dimen/font_30" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/sevenButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_seven"
+                android:textSize="@dimen/font_30" />
+
+            <Button
+                android:id="@+id/eightButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_eight"
+                android:textSize="@dimen/font_30" />
+
+            <Button
+                android:id="@+id/nineButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/number_nine"
+                android:textSize="@dimen/font_30" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/zeroButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="13"
+                android:background="@drawable/button_background_1"
+                android:paddingLeft="25dp"
+                android:text="@string/number_zero"
+                android:textSize="@dimen/font_30" />
+
+            <Button
+                android:id="@+id/clearButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_1"
+                android:text="@string/clear"
+                android:textSize="@dimen/font_30" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
