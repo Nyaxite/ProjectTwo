@@ -14,6 +14,7 @@ public class MainMenu extends Activity
 	final Context context = this;
 	
 	Button mentalMathButton;
+	Button fleetingFiguresButton;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -28,6 +29,17 @@ public class MainMenu extends Activity
 			{
 				// define a new Intent
 				Intent intent = new Intent(context, MentalMath.class);
+				startActivity(intent);
+			} // end onClick inner class
+		}); // end onClickListener
+        
+        fleetingFiguresButton = (Button) findViewById(R.id.fleetingFiguresBotton);
+        fleetingFiguresButton.setOnClickListener(new OnClickListener() 
+        {
+			public void onClick(View v) 
+			{
+				// define a new Intent
+				Intent intent = new Intent(context, FleetingFigures.class);
 				startActivity(intent);
 			} // end onClick inner class
 		}); // end onClickListener

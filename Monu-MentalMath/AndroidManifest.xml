@@ -26,6 +26,10 @@
             android:name="ca.michael.evan.monu_mentalmath.MentalMath"
             android:label="@string/title_activity_mental_math" >
         </activity>
+        <activity
+            android:name="ca.michael.evan.monu_mentalmath.FleetingFigures"
+            android:label="@string/title_activity_fleeting_figures" >
+        </activity>
     </application>
 
 </manifest>

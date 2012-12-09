@@ -67,7 +67,7 @@ public class MentalMath extends Activity implements OnClickListener
 	
 	//Create constant integers for the start, end and delay times
 	private final int startTime = 30000; //default is 30 seconds
-	private final int interval = 50;
+	private final int interval = 100;
 	private int seconds;
 
 	/**
@@ -80,7 +80,7 @@ public class MentalMath extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mental_math);
 		
-		//initialize the textViews, edittexts and buttons
+		//initialize the textViews, edittexts and buttons by connecting them to their XML counterpart
 		timerTextView = (TextView) findViewById(R.id.timerTextView);
 		infoTextView = (TextView) findViewById(R.id.infoTextView);
 		scoreTextView = (TextView) findViewById(R.id.scoreTextView);		
@@ -150,8 +150,9 @@ public class MentalMath extends Activity implements OnClickListener
 			}
 		});
 		
-		//display an alertDialog for "select difficulty"
-		displayAlertDialog("Select Difficulty");		
+		//display an alertDialog for "select difficulty" if user is not in a practice session
+		displayAlertDialog("Select Difficulty");
+		
 	}
 	
 	/**
@@ -366,7 +367,7 @@ public class MentalMath extends Activity implements OnClickListener
 			else if(score < 5 && incorrect == 0)dialogMessage = score + " correct answers isn't exactly amazing, but you at least had no mistakes.";
 			else if(score < 5)dialogMessage = "Good effort. At " + score + " correct answers and " + incorrect + " incorrect attempts you probably could have done better.";
 			else if(score < 10)dialogMessage = score + " correct answers? Not bad at all! You had " + incorrect + " incorrect attempts.";
-			else if(difficulty < 2)dialogMessage = score + " correct answers! Fantabulous! You had " + incorrect + " incorrect attempts. Perhaps try a harder difficulty.";
+			else if(difficulty < 2)dialogMessage = score + " correct answers! Great job! You had " + incorrect + " incorrect attempts. Perhaps try a harder difficulty.";
 			else dialogMessage = score + " correct answers on the hardest difficulty? Why aren't you saving the world instead of playing Android games?!";
 			
 			//Give an option to play again
@@ -395,7 +396,7 @@ public class MentalMath extends Activity implements OnClickListener
 		alertDialog.setTitle(dialogTitle);
 		alertDialog.setMessage(dialogMessage);
 		alertDialog.show();//show the AlertDialog
-	}
+	}//end displayAlertDialog()
 
 	/**
 	 * This method listens for clicks and determines what action to take depending on the button clicked
@@ -459,7 +460,7 @@ public class MentalMath extends Activity implements OnClickListener
 		public GameCountDownTimer(int startTime, int interval)
 		{
 			super(startTime, interval);
-		}
+		}//end GameCountDownTimer constructor
 		
 		//This method determines what happens when the timer runs out
 		@Override
@@ -470,7 +471,7 @@ public class MentalMath extends Activity implements OnClickListener
 			
 			displayAlertDialog("End");//display the 'end' alertDialog
 			
-		}
+		}//end onFinish()
 
 		//This method determines what happens for each tick of the countDownTimer
 		@Override
@@ -482,8 +483,7 @@ public class MentalMath extends Activity implements OnClickListener
 			//set the timer TextView to the current time
 			if(seconds > 9)timerTextView.setText(":" + seconds);
 			else timerTextView.setText(":0" + seconds);
-		
-		}	
+		}//end onTick()
 	}
 
 }

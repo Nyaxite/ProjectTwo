@@ -27,5 +27,11 @@
     <string name="score_zero">Score: 0</string>
     <string name="zero_seconds">:00</string>
     <string name="calculate">Calculate</string>
+    <string name="title_activity_fleeting_figures">Fleeting Figures</string>
+    <string name="fleeting_figures">Fleeting Figures</string>
+    <string name="red">Red</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="yellow">Yellow</string>
 
 </resources>
