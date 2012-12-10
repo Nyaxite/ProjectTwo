@@ -9,6 +9,11 @@
 */
 package ca.michael.evan.monu_mentalmath;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +40,10 @@ public class GameOver extends Activity implements OnClickListener
 	//declare the class variables
 	String gameString, difficultyString, scoreString;
 	int score;
+	
+	private FileWriter fileWriter;
+	private FileReader fileReader;
+	private BufferedReader bufferedReader;
 	
 	/**
 	 * This method is called when the activity is first created. It initializes the project's views
@@ -68,7 +77,42 @@ public class GameOver extends Activity implements OnClickListener
 		difficultyTextView.setText(difficultyString);
 		scoreTextView.setText(scoreString);
 		
+		String writeString = gameString + ";" + difficultyString + ";" + scoreString;
+		
+		try
+		{
+			fileWriter = new FileWriter("\\scores.txt", true);
+			fileWriter.write(writeString);
+			fileWriter.flush();
+			fileWriter.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+			descriptionTextView.setText("Error");
+		}
+		
 		showDescription();//show the description for the user by calling the showDescription method.
+		
+		try
+		{
+			fileReader = new FileReader("\\data\\data\\ca.michael.evan.monu_mentalmath\\files\\scores.txt");
+			bufferedReader = new BufferedReader(fileReader);
+			String read, output;
+			output = "";
+			while((read = bufferedReader.readLine()) != null)
+			{
+				output = output + read;
+			}
+			
+			fileReader.close();
+			
+			descriptionTextView.setText(output);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**
