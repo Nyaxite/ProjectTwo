@@ -33,7 +33,7 @@ public class MainMenu extends Activity
 			} // end onClick inner class
 		}); // end onClickListener
         
-        fleetingFiguresButton = (Button) findViewById(R.id.fleetingFiguresBotton);
+        fleetingFiguresButton = (Button) findViewById(R.id.fleetingFiguresButton);
         fleetingFiguresButton.setOnClickListener(new OnClickListener() 
         {
 			public void onClick(View v) 

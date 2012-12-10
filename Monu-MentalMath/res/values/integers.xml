@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="five">5</integer>
+    <string name="difficulty_">Difficulty</string>
+    <string name="difficulty_2">Difficulty:</string>
+    <string name="score_">Score:</string>
+    <string name="return_to_main_menu">Return to Main Menu</string>
+    <string name="play_again">Play Again</string>
+    <string name="instructions">Instructions</string>
 </resources>

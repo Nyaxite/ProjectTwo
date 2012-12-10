@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_10dp"
                 android:text="@string/zero_seconds"
+                android:textColor="@color/black"
                 android:textSize="@dimen/font_15" />
 
             <TextView
@@ -35,6 +36,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:text="@string/nothing"
+                android:textColor="@color/black"
                 android:textSize="@dimen/font_20" />
 
             <TextView
@@ -43,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dimen_10dp"
                 android:text="@string/number_zero"
+                android:textColor="@color/black"
                 android:textSize="@dimen/font_15" />
 
         </TableRow>
@@ -140,12 +143,13 @@
                 android:layout_marginTop="@dimen/dimen_10dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/nothing"
-                android:textSize="@dimen/font_15"
                 android:shadowColor="@color/black"
                 android:shadowDx="1"
                 android:shadowDy="1"
-                android:shadowRadius="1" />
+                android:shadowRadius="1"
+                android:text="@string/nothing"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_15" />
 
         </TableRow>
 
@@ -166,6 +170,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:text="@string/nothing"
+                android:textColor="@color/black"
                 android:textSize="@dimen/font_40" />
 
         </TableRow>

@@ -268,7 +268,7 @@ public class MentalMath extends Activity implements OnClickListener
 	
 	/**
 	 * This method builds each alertDialog in the game. Depending on what gameState is given to it
-	 * (i.e.: select difficulty, start, end), it will generate an alertDialog for that state.
+	 * (i.e.: select difficulty, start), it will generate an alertDialog for that state.
 	 */
 	public void displayAlertDialog(String gameState)
 	{
@@ -353,44 +353,6 @@ public class MentalMath extends Activity implements OnClickListener
 				}
 			});
 		}//end 'start'
-		//if the game is at its end
-		else if(gameState.equals("End"))
-		{
-			//set a proper title
-			dialogTitle = "Game Over! Difficulty: " + difficultyString;
-			
-			//depending on the user's performance, set different messages
-			if(score == 0 && incorrect == 0)dialogMessage = "You didn't even attempt it. Maybe read the instructions first.";
-			else if(score == 0)dialogMessage = "Did you even try? Not even one answer was correct. At least you managed to hit the calculate button " + incorrect + " times. Try the practice mode.";
-			else if(score == 1 && incorrect > 1)dialogMessage = "Congratulations on getting 1 correct and failing " + incorrect + " times.";
-			else if(score == 1)dialogMessage = "Wow, 1 correct? Consider me truly impressed... *cough*";
-			else if(score < 5 && incorrect == 0)dialogMessage = score + " correct answers isn't exactly amazing, but you at least had no mistakes.";
-			else if(score < 5)dialogMessage = "Good effort. At " + score + " correct answers and " + incorrect + " incorrect attempts you probably could have done better.";
-			else if(score < 10)dialogMessage = score + " correct answers? Not bad at all! You had " + incorrect + " incorrect attempts.";
-			else if(difficulty < 2)dialogMessage = score + " correct answers! Great job! You had " + incorrect + " incorrect attempts. Perhaps try a harder difficulty.";
-			else dialogMessage = score + " correct answers on the hardest difficulty? Why aren't you saving the world instead of playing Android games?!";
-			
-			//Give an option to play again
-			alertDialog.setButton("Play again", new DialogInterface.OnClickListener() 
-			{
-				public void onClick(DialogInterface dialog, int whichButton) 
-				{
-					//play again by restarting the activity
-					Intent intent = getIntent();
-					finish();
-					startActivity(intent);
-				}
-			});
-			//or give an option to exit the game
-			alertDialog.setButton2("Exit", new DialogInterface.OnClickListener() 
-			{
-				public void onClick(DialogInterface dialog, int whichButton) 
-				{
-					//exits the program
-					System.exit(0);
-				}
-			});
-		}//end 'end'
 		
 		//set the variables to the title and message
 		alertDialog.setTitle(dialogTitle);
@@ -398,6 +360,21 @@ public class MentalMath extends Activity implements OnClickListener
 		alertDialog.show();//show the AlertDialog
 	}//end displayAlertDialog()
 
+	/**
+	 * This method determines what will happen when the state of the game is at end.
+	 * The activity is switched to the GameOver activity
+	 */
+	public void endGame()
+	{
+		//create a new intent
+		Intent intent = new Intent(this, GameOver.class);
+		// send Key/Value pairs to the GameOver activity
+		intent.putExtra("game", "Mental Math");
+		intent.putExtra("difficulty", difficultyString);
+		intent.putExtra("score", String.valueOf(score));
+		startActivity(intent);//start the activity
+	}
+	
 	/**
 	 * This method listens for clicks and determines what action to take depending on the button clicked
 	 */
@@ -408,33 +385,34 @@ public class MentalMath extends Activity implements OnClickListener
 		//if it is answerButton
 		if(v.getId() == R.id.answerButton)
 		{
-			//declare variables
-			String answerString = "";
-			int userAnswer;
-			//set the answer string to the input of the text
-			answerString = answerEditText.getText().toString();
-			
-			//try to parse the input into an integer. If it fails, default the user answer to zero
-			try {userAnswer = Integer.parseInt(answerString);}
-			catch(Exception e){userAnswer = 0;}
-			
-			//if the user is correct
-			if(userAnswer == answer)
-			{
-				infoTextView.setText("Correct!");//notify the user they are correct
-				score++;//increase the correct score
-				scoreTextView.setText("Score: " + score);//update the score textview
+				//declare variables
+				String answerString = "";
+				int userAnswer;
+				//set the answer string to the input of the text
+				answerString = answerEditText.getText().toString();
 				
-				clearInput();//clear the input
-			}
-			else//if the user is incorrect
-			{
-				infoTextView.setText("Incorrect. Correct answer: " + answer);//notify the user they are incorrect and provide the correct answer
-				incorrect++;//increase the incorrect score
-				clearInput();//clear the input
-			}
-			
-			buildQuestion();//create the next question			
+				//try to parse the input into an integer. If it fails, default the user answer to zero
+				try {userAnswer = Integer.parseInt(answerString);}
+				catch(Exception e){userAnswer = 0;}
+				
+				//if the user is correct
+				if(userAnswer == answer)
+				{
+					infoTextView.setText("Correct!");//notify the user they are correct
+					score++;//increase the correct score
+					scoreTextView.setText("Score: " + score);//update the score textview
+					
+					clearInput();//clear the input
+				}
+				else//if the user is incorrect
+				{
+					infoTextView.setText("Incorrect. Correct answer: " + answer);//notify the user they are incorrect and provide the correct answer
+					incorrect++;//increase the incorrect score
+					clearInput();//clear the input
+				}
+				
+				buildQuestion();//create the next question	
+		
 		}//end answerButton
 		else if(v.getId() == R.id.clearButton)clearInput();//clear the input if the clearButton was pressed
 		//if any of the numbers were pressed, append the number in the answerEditText
@@ -469,7 +447,7 @@ public class MentalMath extends Activity implements OnClickListener
 			infoTextView.setText("Game over!");//notify the user the timer has run out
 			timerTextView.setText(":00");//set the timerTextView to 0	
 			
-			displayAlertDialog("End");//display the 'end' alertDialog
+			endGame();//end the game
 			
 		}//end onFinish()
 

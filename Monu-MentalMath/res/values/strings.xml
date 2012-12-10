@@ -33,5 +33,8 @@
     <string name="blue">Blue</string>
     <string name="green">Green</string>
     <string name="yellow">Yellow</string>
+    <string name="title_activity_game_over">Game Over</string>
+    <string name="game_over">Game Over!</string>
+    <string name="game_">Game:</string>
 
 </resources>

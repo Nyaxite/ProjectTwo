@@ -5,7 +5,8 @@
 *	Description: The Fleeting Figures game is part of the Monu-Mental Math application. In this game, the user is shown
 *	4 numbers in 4 different coloured ovals (red, blue, yellow, green). The user has to memorize the number and colour
 *	pairs. After a few seconds, the ovals disappear and a question is shown. The question asks which colour was associated
-*	with a given number. The user has to choose between the four colours within 5 seconds. If not, or if the user chooses incorrectly, they lose.
+*	with a given number. The user has to choose between the four colours within 5 seconds. If not, or if the user chooses incorrectly,
+*	only one more mistake is allowed before they lose.
 */
 package ca.michael.evan.monu_mentalmath;
 
@@ -48,8 +49,10 @@ public class FleetingFigures extends Activity implements OnClickListener
 	public TextView scoreTextView;//displays the user's score
 	
 	//declare class variables
-	int max, min, answerInteger, chosenNumber, currentQuestionNumber, score, difficulty, seconds;
+	int max, min, answerInteger, chosenNumber, currentQuestionNumber, score, difficulty, seconds, incorrect;
 	public String answerColor, difficultyString;
+	
+	private final int maxIncorrect = 3;
 	
 	//create an alertDialog
 	AlertDialog alertDialog;
@@ -101,6 +104,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 		score = 0;
 		difficulty = 0;
 		currentQuestionNumber = 0;
+		incorrect = 0;
 		
 		//initialize the countDownTimer and give it a start/tick time
         countDownTimer = new GameCountDownTimer(startTime, interval);
@@ -325,7 +329,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 	
 	/**
 	 * This method builds each alertDialog in the game. Depending on what gameState is given to it
-	 * (i.e.: select difficulty, start, end), it will generate an alertDialog for that state.
+	 * (i.e.: select difficulty, start), it will generate an alertDialog for that state.
 	 */
 	public void displayAlertDialog(String gameState)
 	{
@@ -351,6 +355,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 					//Create the game based on easy settings
 					min = 10;
 					max = 99;
+					delay = 7000;//7 seconds
 					difficulty = 0;
 					difficultyString = "Easy";
 					displayAlertDialog("Start");//begin the 'start' alert dialog
@@ -364,6 +369,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 					//Create the game based on 'medium' settings
 					min = 100;
 					max = 999;
+					delay = 6000;//6 seconds
 					difficulty = 1;
 					difficultyString = "Medium";
 					displayAlertDialog("Start");//begin the 'start' alert dialog
@@ -377,6 +383,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 					//Create the game based on 'hard' settings
 					min = 1000;
 					max = 9999;
+					delay = 5000;//5 seconds
 					difficulty = 2;
 					difficultyString = "Hard";
 					displayAlertDialog("Start");//begin the 'start' alert dialog
@@ -388,7 +395,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 		{
 			//set a proper title and message
 			dialogTitle = "Get Ready!";
-			dialogMessage = "Find the correct colour for the matching number. Don't make any mistakes or you lose! Difficulty: " + difficultyString;
+			dialogMessage = "Find the correct colour for the matching number. After three mistakes you lose! Difficulty: " + difficultyString;
 			
 			//button for starting the game
 			alertDialog.setButton("I'm ready!", new DialogInterface.OnClickListener() 
@@ -408,48 +415,57 @@ public class FleetingFigures extends Activity implements OnClickListener
 				}
 			});
 		}//end 'start'
-		//if the game is at its end
-		else if(gameState.equals("End"))
-		{
-			//set a proper title
-			dialogTitle = "Game Over! Difficulty: " + difficultyString;
-			
-			//depending on the user's performance, set different messages
-			if(score == 0)dialogMessage = "Fat fingers?";
-			else if(score < 5)dialogMessage = "Okay that was a sub-par performance. Keep practicing. You got " + score + " correct.";
-			else if(score < 10)dialogMessage = "Not too bad. You got " + score + " correct.";
-			else if(score < 15)dialogMessage = "Nice job! You got " + score + " correct.";
-			else if(score < 25)dialogMessage = "Excellent! You got " + score + " correct.";
-			else if(difficulty < 2)dialogMessage = "Amazing! You should try a higher difficulty! You got " + score + " correct.";
-			else dialogMessage = "You got " + score + " on the hardest difficulty?! Photographic memory achieved!";
-			
-			//Give an option to play again
-			alertDialog.setButton("Play again", new DialogInterface.OnClickListener() 
-			{
-				public void onClick(DialogInterface dialog, int whichButton) 
-				{
-					//play again by restarting the activity
-					Intent intent = getIntent();
-					finish();
-					startActivity(intent);
-				}
-			});
-			//or give an option to exit the game
-			alertDialog.setButton2("Exit", new DialogInterface.OnClickListener() 
-			{
-				public void onClick(DialogInterface dialog, int whichButton) 
-				{
-					//exits the program
-					System.exit(0);
-				}
-			});
-		}//end 'end'
 		
 		//set the variables to the title and message
 		alertDialog.setTitle(dialogTitle);
 		alertDialog.setMessage(dialogMessage);
 		alertDialog.show();//show the AlertDialog
 	}//end displayAlertDialog()
+	
+	/**
+	 * This method keeps track of, and updates, the user's score and mistakes
+	 */
+	public void determineScore(boolean isCorrect)
+	{
+		countDownTimer.cancel();//cancel the timer
+		
+		if(isCorrect)
+		{
+			infoTextView.setText("Correct!");//notify the user they are correct
+			
+			//reduce the delay depending on the current delay value, increasing difficulty over time
+			if(delay > 4000)delay = delay - 200;
+			else if(delay > 3000)delay = delay - 100;
+			else delay = delay - 50;
+			
+			score++;//increase the user's score
+			scoreTextView.setText(String.valueOf(score));//update the user's score textview
+			
+			nextQuestion();//display the next question
+		}
+		else
+		{
+			infoTextView.setText("Incorrect. It was " + answerColor + ".");
+			incorrect++;//add to their incorrect score
+			if(incorrect == maxIncorrect)endGame();//end the game
+			else nextQuestion();//display the next question
+		}
+	}
+	
+	/**
+	 * This method determines what will happen when the state of the game is at end.
+	 * The activity is switched to the GameOver activity
+	 */
+	public void endGame()
+	{
+		//create a new intent
+		Intent intent = new Intent(this, GameOver.class);
+		// send Key/Value pairs to the GameOver activity
+		intent.putExtra("game", "Fleeting Figures");
+		intent.putExtra("difficulty", difficultyString);
+		intent.putExtra("score", String.valueOf(score));
+		startActivity(intent);//start the activity
+	}
 
 	/**
 	 * This method listens for clicks and determines what action to take depending on the button clicked
@@ -459,87 +475,29 @@ public class FleetingFigures extends Activity implements OnClickListener
 	{
 		if(v.getId() == R.id.answerButton1)//if the user clicked the first button
 		{
-			countDownTimer.cancel();//cancel the timer
-			if(answerColor == "Red")//if the answerColor is red, the user is correct
-			{
-				infoTextView.setText("Correct!");
-					
-				//reduce the delay depending on the current delay value, increasing difficulty over time
-				if(delay > 4000)delay = delay - 200;
-				else if(delay > 3000)delay = delay - 100;
-				else delay = delay - 50;
-				
-				score++;//increase the user's score
-				scoreTextView.setText(String.valueOf(score));//update the user's score textview
-				
-				nextQuestion();//display the next question
-			}
-			else
-			{
-				infoTextView.setText("Incorrect. It was " + answerColor + ".");
-				displayAlertDialog("End");//call the alertDialog to end the game
-			}
+			//if the answerColor is red, the user is correct
+			if(answerColor == "Red")determineScore(true);
+			else determineScore(false);
 
 		}//end answerButton1
 		else if(v.getId() == R.id.answerButton2)//if the user clicked the second button
 		{
-			countDownTimer.cancel();//cancel the timer
-			if(answerColor == "Blue")//if the answerColor is blue, the user is correct
-			{
-				infoTextView.setText("Correct!");
-				//reduce the delay depending on the current delay value, increasing difficulty over time
-				if(delay > 4000)delay = delay - 200;
-				else if(delay > 3000)delay = delay - 100;
-				else delay = delay - 50;
-				score++;//increase the user's score
-				scoreTextView.setText(String.valueOf(score));//update the user's score textview
-				nextQuestion();//display the next question
-			}
-			else
-			{
-				infoTextView.setText("Incorrect. It was " + answerColor + ".");
-				displayAlertDialog("End");//call the alertDialog to end the game
-			}
+			//if the answerColor is blue, the user is correct
+			if(answerColor == "Blue")determineScore(true);
+			else determineScore(false);
+			
 		}//end answerButton2
 		else if(v.getId() == R.id.answerButton3)//if the user clicked the third button
 		{
-			countDownTimer.cancel();//cancel the timer
-			if(answerColor == "Yellow")//if the answerColor is yellow, the user is correct
-			{
-				infoTextView.setText("Correct!");
-				//reduce the delay depending on the current delay value, increasing difficulty over time
-				if(delay > 4000)delay = delay - 200;
-				else if(delay > 3000)delay = delay - 100;
-				else delay = delay - 50;
-				score++;//increase the user's score
-				scoreTextView.setText(String.valueOf(score));//update the user's score textview
-				nextQuestion();//display the next question
-			}
-			else
-			{
-				infoTextView.setText("Incorrect. It was " + answerColor + ".");
-				displayAlertDialog("End");//call the alertDialog to end the game
-			}
+			//if the answerColor is yellow, the user is correct
+			if(answerColor == "Yellow")determineScore(true);
+			else determineScore(false);
 		}//end answerButton3
 		else if(v.getId() == R.id.answerButton4)//if the user clicked the fourth button
 		{
-			countDownTimer.cancel();//cancel the timer
-			if(answerColor == "Green")//if the answerColor is green, the user is correct
-			{
-				infoTextView.setText("Correct!");
-				//reduce the delay depending on the current delay value, increasing difficulty over time
-				if(delay > 4000)delay = delay - 200;
-				else if(delay > 3000)delay = delay - 100;
-				else delay = delay - 50;
-				score++;//increase the user's score
-				scoreTextView.setText(String.valueOf(score));//update the user's score textview
-				nextQuestion();//display the next question
-			}
-			else
-			{
-				infoTextView.setText("Incorrect. It was " + answerColor + ".");
-				displayAlertDialog("End");//call the alertDialog to end the game
-			}
+			//if the answerColor is green, the user is correct
+			if(answerColor == "Green")determineScore(true);
+			else determineScore(false);
 		}//end answerButton4
 	}//end onClick
 	
@@ -558,11 +516,17 @@ public class FleetingFigures extends Activity implements OnClickListener
 		@Override
 		public void onFinish() 
 		{
-			infoTextView.setText("Game over!");//notify the user the timer has run out
+			infoTextView.setText("Time's up! It was " + answerColor + ".");
 			timerTextView.setText(":00");//set the timerTextView to 0	
 			
-			displayAlertDialog("End");//display the 'end' alertDialog
-			
+			incorrect++;
+			if(incorrect == maxIncorrect)
+			{
+				infoTextView.setText("Game over!");//notify the user the timer has run out
+				endGame();//end the game
+			}
+			else nextQuestion();//display the next question
+				
 		}//end onFinish()
 
 		//This method determines what happens for each tick of the countDownTimer
