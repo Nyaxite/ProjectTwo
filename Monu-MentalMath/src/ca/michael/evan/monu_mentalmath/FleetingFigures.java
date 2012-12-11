@@ -17,6 +17,7 @@ import java.util.HashMap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -52,7 +53,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 	int max, min, answerInteger, chosenNumber, currentQuestionNumber, score, difficulty, seconds, incorrect;
 	public String answerColor, difficultyString;
 	
-	private final int maxIncorrect = 1;
+	private final int maxIncorrect = 3;
 	
 	//create an alertDialog
 	AlertDialog alertDialog;
@@ -119,6 +120,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 	/**
 	 * buildQuestion() manages other methods to generate random numbers and the answer.
 	 */
+	@SuppressLint("UseSparseArrays")
 	public void buildQuestion()
 	{
 		//declare variables

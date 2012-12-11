@@ -10,6 +10,8 @@
 package ca.michael.evan.monu_mentalmath;
 
 
+import java.io.DataOutputStream;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +35,7 @@ public class GameOver extends Activity implements OnClickListener
 	//declare the Buttons
 	public Button playAgainButton;
 	public Button returnToMainMenuButton;
+	public Button checkScoresButton;
 
 	//declare the class variables
 	String gameString, difficultyString, scoreString;
@@ -56,9 +59,11 @@ public class GameOver extends Activity implements OnClickListener
 		
 		playAgainButton = (Button) findViewById(R.id.playAgainButton);
 		returnToMainMenuButton = (Button) findViewById(R.id.returnToMainMenuButton);
+		checkScoresButton = (Button) findViewById(R.id.checkScoresButton);
 		//set the button onClickListener to this activity
 		playAgainButton.setOnClickListener(this);
 		returnToMainMenuButton.setOnClickListener(this);
+		checkScoresButton.setOnClickListener(this);
 		
 		//get the intents passed from the other activities: game, difficulty and score
 		gameString = getIntent().getExtras().getString("game");
@@ -70,7 +75,7 @@ public class GameOver extends Activity implements OnClickListener
 		difficultyTextView.setText(difficultyString);
 		scoreTextView.setText(scoreString);
 		
-		String writeString = gameString + ";" + difficultyString + ";" + scoreString;
+		String writeString = gameString + "  |  " + difficultyString + "  |  " + scoreString;
 		
 		showDescription();
 		
@@ -144,6 +149,10 @@ public class GameOver extends Activity implements OnClickListener
 				startActivity(new Intent(context, FleetingFigures.class));
 			}
 			
+		}
+		else if(v.getId()==R.id.checkScoresButton)
+		{
+			startActivity(new Intent(context, ScoreScreen.class));
 		}
 		
 	}

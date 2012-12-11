@@ -16,6 +16,7 @@ public class MainMenu extends Activity
 	Button mentalMathButton;
 	Button fleetingFiguresButton;
 	Button scoresScreenButton;
+	Button exitButton;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -52,6 +53,19 @@ public class MainMenu extends Activity
 			{
 				// define a new Intent
 				Intent intent = new Intent(context, ScoreScreen.class);
+				startActivity(intent);
+			} // end onClick inner class
+		}); // end onClickListener
+        
+        exitButton = (Button) findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(new OnClickListener() 
+        {
+			public void onClick(View v) 
+			{
+				//exit to home
+				Intent intent = new Intent(Intent.ACTION_MAIN);
+				intent.addCategory(Intent.CATEGORY_HOME);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
 			} // end onClick inner class
 		}); // end onClickListener

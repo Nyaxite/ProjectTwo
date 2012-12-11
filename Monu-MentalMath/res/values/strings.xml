@@ -37,5 +37,9 @@
     <string name="game_over">Game Over!</string>
     <string name="game_">Game:</string>
     <string name="title_activity_score_screen">Score Screen</string>
+    <string name="player_scores">Player Scores</string>
+    <string name="exit">Exit</string>
+    <string name="scores">Scores</string>
+    <string name="check_scores">Check Scores</string>
 
 </resources>
