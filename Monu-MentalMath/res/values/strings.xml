@@ -36,5 +36,6 @@
     <string name="title_activity_game_over">Game Over</string>
     <string name="game_over">Game Over!</string>
     <string name="game_">Game:</string>
+    <string name="title_activity_score_screen">Score Screen</string>
 
 </resources>

@@ -23,7 +23,6 @@
             android:text="Monu-Mental Math!"
             android:textColor="@color/black"
             android:textSize="@dimen/font_30" />
-
     </TableRow>
 
     <TableRow
@@ -41,7 +40,6 @@
             android:layout_weight="1"
             android:background="@drawable/button_background_1"
             android:text="@string/mental_math" />
-
     </TableRow>
 
     <TableRow
@@ -76,7 +74,23 @@
             android:layout_weight="1"
             android:background="@drawable/button_background_1"
             android:text="@string/instructions" />
+    </TableRow>
 
+    <TableRow
+        android:id="@+id/TableRow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_50dp"
+        android:layout_marginRight="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_10dp" >
+
+        <Button
+            android:id="@+id/scoreScreenButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_background_1"
+            android:text="score" />
     </TableRow>
 
 </TableLayout>

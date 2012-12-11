@@ -52,7 +52,7 @@ public class FleetingFigures extends Activity implements OnClickListener
 	int max, min, answerInteger, chosenNumber, currentQuestionNumber, score, difficulty, seconds, incorrect;
 	public String answerColor, difficultyString;
 	
-	private final int maxIncorrect = 3;
+	private final int maxIncorrect = 1;
 	
 	//create an alertDialog
 	AlertDialog alertDialog;
