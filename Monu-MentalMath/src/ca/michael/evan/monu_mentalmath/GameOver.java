@@ -4,8 +4,8 @@
 *	Date (due): 2012/12/14
 *	Description: The GameOver activity is shown after each game has ended. It takes the name of the
 *	game the user last played, the difficulty they played on, and the score they attained. It also
-*	generates a message depending on their performance. It has buttons to let the user play again or 
-*	return to the main menu.
+*	generates a message depending on their performance. It has buttons to let the user play again, 
+*	check their scores or return to the main menu.
 */
 package ca.michael.evan.monu_mentalmath;
 
@@ -42,8 +42,7 @@ public class GameOver extends Activity implements OnClickListener
 	int score;
 	
 	/**
-	 * This method is called when the activity is first created. It initializes the project's views
-	 * and many of its variables. It also sets the onClickListeners for each button, and calls an alertDialog.
+	 * This method is called when the activity is first created.
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -152,7 +151,7 @@ public class GameOver extends Activity implements OnClickListener
 		}
 		else if(v.getId()==R.id.checkScoresButton)
 		{
-			startActivity(new Intent(context, ScoreScreen.class));
+			startActivity(new Intent(context, ScoreScreen.class));//start the ScoreScreen activity
 		}
 		
 	}

@@ -1,10 +1,15 @@
+/*
+*	Name: Main Menu (ca.michael.evan.monu_mentalmath / Main Menu.java)
+*	Authors: Michael Burnie, Evan Pugh
+*	Date (due): 2012/12/14
+*	Description: Displays and functions the navigational buttons of Monu-Mental Math.
+*/
 package ca.michael.evan.monu_mentalmath;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,6 +18,7 @@ public class MainMenu extends Activity
 {
 	final Context context = this;
 	
+	//create Button variables
 	Button mentalMathButton;
 	Button fleetingFiguresButton;
 	Button scoresScreenButton;
@@ -25,13 +31,14 @@ public class MainMenu extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         
+        //Assign the buttons to their GUI counterpart and give them their own listener to start another activity on click.
         mentalMathButton = (Button) findViewById(R.id.mentalMathButton);
         mentalMathButton.setOnClickListener(new OnClickListener() 
         {
 			public void onClick(View v) 
 			{
 				// define a new Intent
-				Intent intent = new Intent(context, MentalMath.class);
+				Intent intent = new Intent(context, MentalMath.class);//start the Mental Math activity
 				startActivity(intent);
 			} // end onClick inner class
 		}); // end onClickListener
@@ -42,7 +49,7 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				// define a new Intent
-				Intent intent = new Intent(context, FleetingFigures.class);
+				Intent intent = new Intent(context, FleetingFigures.class);//start the Fleeting Figures activity
 				startActivity(intent);
 			} // end onClick inner class
 		}); // end onClickListener
@@ -53,7 +60,7 @@ public class MainMenu extends Activity
 			public void onClick(View v)
 			{
 				// define a new Intent
-				Intent intent = new Intent(context, Instructions.class);
+				Intent intent = new Intent(context, Instructions.class);//start the Instructions activity
 				startActivity(intent);
 			} // end onClick inner class
 		}); // end onClickListener
@@ -64,7 +71,7 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				// define a new Intent
-				Intent intent = new Intent(context, ScoreScreen.class);
+				Intent intent = new Intent(context, ScoreScreen.class);//start the Score Screen activity
 				startActivity(intent);
 			} // end onClick inner class
 		}); // end onClickListener
@@ -84,13 +91,5 @@ public class MainMenu extends Activity
         
         
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) 
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-    
+  
 }

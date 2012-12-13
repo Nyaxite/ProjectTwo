@@ -1,50 +1,107 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/instruction_book"
     tools:context=".Instructions" >
 
-    <TextView
-        android:id="@+id/instructions_title"
+    <TableRow
+        android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="Instructions"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_20" />
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/instruction_activity_menu_button"
+        <TextView
+            android:id="@+id/instructions_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/instructions"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_30"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="60dp"
-        android:height="@dimen/dimen_50dp"
-        android:text="Main Menu"
-        android:width="@dimen/dimen_100dp" />
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/instruction_activity_next_button"
+        <TextView
+            android:id="@+id/gameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:text="@string/nothing"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_15"
+            android:textStyle="italic" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:height="@dimen/dimen_50dp"
-        android:text="Next"
-        android:width="@dimen/dimen_100dp" />
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/InstructionsTextView"
+        <TextView
+            android:id="@+id/instructionsTextView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_130dp"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_weight="1"
+            android:text="@string/nothing"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_12" />
+
+        <TextView
+            android:id="@+id/instructionsTextView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_130dp"
+            android:layout_marginLeft="@dimen/dimen_5dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:layout_weight="1"
+            android:text="@string/nothing"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_12" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/instructions_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
-        android:textColor="@color/black" />
+        android:layout_height="wrap_content" >
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/instruction_activity_menu_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_background_1"
+            android:height="@dimen/dimen_50dp"
+            android:text="@string/main_menu"
+            android:width="@dimen/dimen_100dp" />
+
+        <Button
+            android:id="@+id/instruction_activity_next_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_background_1"
+            android:height="@dimen/dimen_50dp"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:text="@string/next"
+            android:width="@dimen/dimen_100dp" />
+
+    </TableRow>
+
+</TableLayout>

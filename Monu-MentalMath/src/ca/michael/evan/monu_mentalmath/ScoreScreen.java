@@ -35,6 +35,9 @@ public class ScoreScreen extends Activity
 	//declare Button
 	private Button returnToMenuButton;
 	
+	/**
+	 * This method is called when the activity is first created.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -65,18 +68,21 @@ public class ScoreScreen extends Activity
 		displayScores();//display the scores on the textViews by calling the displayScores() method
 	}
 	
+	/**
+	 * This method handles displaying the latest score values
+	 */
 	private void displayScores()
 	{
 		try // try to read data from the scores file
 		{
-			DataInputStream in = new DataInputStream(openFileInput("scores"));
-			ArrayList<String> inputList = new ArrayList<String>();
+			DataInputStream in = new DataInputStream(openFileInput("scores"));//open the scores file
+			ArrayList<String> inputList = new ArrayList<String>();//create an ArrayList to hold the text lines
 			
 			try
 			{	
 				for(;;)
 				{
-					inputList.add(in.readUTF());
+					inputList.add(in.readUTF());//read in each line of the text
 				}
 			}
 			catch (EOFException e) // catch end of file exception

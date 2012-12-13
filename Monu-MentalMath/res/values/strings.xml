@@ -42,5 +42,9 @@
     <string name="scores">Scores</string>
     <string name="check_scores">Check Scores</string>
     <string name="title_activity_instructions">Instructions</string>
+    <string name="next">Next</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="instructions">Instructions</string>
+    <string name="monu_mental_math_title">Monu-Mental Math!</string>
 
 </resources>
