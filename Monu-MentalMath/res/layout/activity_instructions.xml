@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/instruction_book"
+    tools:context=".Instructions" >
+
+    <TextView
+        android:id="@+id/instructions_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="Instructions"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_20" />
+
+    <Button
+        android:id="@+id/instruction_activity_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="60dp"
+        android:height="@dimen/dimen_50dp"
+        android:text="Main Menu"
+        android:width="@dimen/dimen_100dp" />
+
+    <Button
+        android:id="@+id/instruction_activity_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:height="@dimen/dimen_50dp"
+        android:text="Next"
+        android:width="@dimen/dimen_100dp" />
+
+    <TextView
+        android:id="@+id/InstructionsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/instructions_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="TextView"
+        android:textColor="@color/black" />
+
+</RelativeLayout>

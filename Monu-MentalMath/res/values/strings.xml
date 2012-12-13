@@ -41,5 +41,6 @@
     <string name="exit">Exit</string>
     <string name="scores">Scores</string>
     <string name="check_scores">Check Scores</string>
+    <string name="title_activity_instructions">Instructions</string>
 
 </resources>

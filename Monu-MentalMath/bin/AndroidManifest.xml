@@ -47,6 +47,10 @@
             android:name="ca.michael.evan.monu_mentalmath.ScoreScreen"
             android:label="@string/title_activity_score_screen" >
         </activity>
+        <activity
+            android:name="ca.michael.evan.monu_mentalmath.Instructions"
+            android:label="@string/title_activity_instructions" >
+        </activity>
     </application>
 
 </manifest>
